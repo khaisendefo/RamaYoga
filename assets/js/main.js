@@ -41,3 +41,41 @@ const toggleMenu = () => {
   });
 }
 toggleMenu();
+
+
+const splide = new Splide('.categories__slider', {
+    perPage: 4, 
+    perMove: 1,
+    pagination: false,
+    arrows: false,
+    gap: '24px',
+  });
+
+  splide.mount();
+
+  const prevButton = document.querySelector('.categories__slider-arrow--prev');
+  const nextButton = document.querySelector('.categories__slider-arrow--next');
+
+  prevButton.addEventListener('click', () => splide.go('<'));
+  nextButton.addEventListener('click', () => splide.go('>'));
+
+  updateArrowState();
+
+  splide.on('move', updateArrowState);
+  splide.on('updated', updateArrowState); 
+
+  function updateArrowState() {
+    if (splide.index === 0) {
+      prevButton.classList.add('categories__slider-arrow--is-disabled');
+    } else {
+      prevButton.classList.remove('categories__slider-arrow--is-disabled');
+    }
+
+    const lastSlideIndex = splide.Components.Controller.getEnd();
+
+    if (splide.index === lastSlideIndex) {
+      nextButton.classList.add('categories__slider-arrow--is-disabled');
+    } else {
+      nextButton.classList.remove('categories__slider-arrow--is-disabled');
+    }
+  }
