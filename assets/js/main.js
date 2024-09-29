@@ -79,3 +79,16 @@ const splide = new Splide('.categories__slider', {
       nextButton.classList.remove('categories__slider-arrow--is-disabled');
     }
   }
+
+const stepCards = document.querySelectorAll('.step__card');
+stepCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('active')) {
+      card.classList.remove('active');
+    } else {
+      stepCards.forEach((c) => c.classList.remove('active'));
+      card.classList.add('active');
+    }
+  });
+});
+
