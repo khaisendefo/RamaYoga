@@ -49,6 +49,18 @@ const splide = new Splide('.categories__slider', {
     pagination: false,
     arrows: false,
     gap: '24px',
+
+    breakpoints: {
+      1200: {
+        perPage: 3,
+      },
+      768: {
+        perPage: 2, 
+      },
+      500: {
+        perPage: 1,
+      }
+    }
   });
 
   splide.mount();
