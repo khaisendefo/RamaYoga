@@ -104,3 +104,46 @@ stepCards.forEach((card) => {
   });
 });
 
+
+const toggleModal = () => {
+  document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.querySelector('.modal');
+    const body = document.body; 
+    const modalOpenButtons = document.querySelectorAll('.modal-open');
+    const modalCloseButton = document.querySelector('.modal__close');
+
+    function openModal() {
+      modal.classList.add('active');
+      body.classList.add('body-no-scroll'); 
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      body.classList.remove('body-no-scroll'); 
+    }
+
+    modalOpenButtons.forEach(button => {
+      button.addEventListener('click', openModal);
+    });
+
+    modalCloseButton.addEventListener('click', closeModal);
+
+    modal.querySelector('.modal__overlay').addEventListener('click', (event) => {
+      const modalWindow = modal.querySelector('.modal__window');
+      if (!modalWindow.contains(event.target)) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+  });
+}
+toggleModal();
+
+let inputs = document.querySelectorAll('input[type="tel"]');
+let im = new Inputmask('+7(999) 999-99-99');
+    im.mask(inputs);
