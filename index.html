@@ -470,10 +470,12 @@
             </button>
             <h2 class="modal__title">Оставить заявку</h2>
             <p class="modal__description">Пожалуйста, запонилните форму обратной связи</p>
-            <form class="modal__form form" action="">
+            <form class="modal__form form" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="80eb75f5-f1f0-41ac-aa33-c283b1bfb07f">
               <input class="modal__form-input" name="Имя" required placeholder="Имя" type="text">
-              <input class="modal__form-input" name="Имя" required placeholder="Телефон" type="tel">
-              <button class="modal__form-button button">Отправить</button>
+              <input class="modal__form-input" name="Телефон" required placeholder="Телефон" type="tel">
+              <input class="modal__form-input" name="Почта" required placeholder="Email" type="email">
+              <button class="modal__form-button button" type="submit">Отправить</button>
             </form>
           </div>
         </div>

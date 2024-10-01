@@ -146,4 +146,31 @@ toggleModal();
 
 let inputs = document.querySelectorAll('input[type="tel"]');
 let im = new Inputmask('+7(999) 999-99-99');
-    im.mask(inputs);
+im.mask(inputs);
+
+var forms = document.querySelectorAll('.form');
+forms.forEach(function(form) {
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var formData = new FormData(this);
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Ошибка отправки данных: " + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert("Данные успешно отправлены!"); // Уведомление об успешной отправке
+      console.log(data);
+      this.reset();
+    })
+    .catch(error => {
+      alert("Ошибка отправки данных: " + error.message);
+      console.error(error);
+    });
+  });
+});
